@@ -7,9 +7,11 @@
 ### 🌳 LazyGit integration
 <img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 06 24 PM" src="https://github.com/user-attachments/assets/a5d6ad9a-a925-4131-9d7c-d9522181a68a" />
 
-### 🌳 File Tree and Editor
-<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 02 38 PM" src="https://github.com/user-attachments/assets/e0de8769-8859-4eb4-8e59-709ee7aa9deb" />
+### 🌳 File Tree and Editor with autocomplete
+<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 09 46 PM" src="https://github.com/user-attachments/assets/4e77accb-477c-4372-b272-1820eaee05f7" />
 
+### 🌳 Fuzzy finding (live grep) across codebase
+<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 10 58 PM" src="https://github.com/user-attachments/assets/656f1a2a-ebd1-4e94-8ac9-056cbcb661bd" />
 
 ## 🌟 Features
 
