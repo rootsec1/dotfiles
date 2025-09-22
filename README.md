@@ -4,11 +4,12 @@
 
 ## 📸 Screenshots
 
+### 🌳 LazyGit integration
+<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 06 24 PM" src="https://github.com/user-attachments/assets/a5d6ad9a-a925-4131-9d7c-d9522181a68a" />
+
 ### 🌳 File Tree and Editor
 <img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 02 38 PM" src="https://github.com/user-attachments/assets/e0de8769-8859-4eb4-8e59-709ee7aa9deb" />
 
-### 🌳 LazyGit integration
-<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 04 53 PM" src="https://github.com/user-attachments/assets/2db36080-1513-42d5-bb2c-e8b407a6e946" />
 
 ## 🌟 Features
 
