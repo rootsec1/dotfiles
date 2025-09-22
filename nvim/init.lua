@@ -132,6 +132,62 @@ require("bufferline").setup({
     }
 })
 
+-- AI assistant
+require("codecompanion").setup({
+    adapters = {
+        http = {
+            openai = function()
+                return require("codecompanion.adapters").extend("openai", {
+                    env = {
+                        api_key = os.getenv("OPENAI_API_KEY"),
+                        model = "o4-mini-high"
+                    },
+                })
+            end,
+        },
+    },
+    strategies = {
+        chat = {
+            adapter = "openai",
+            keymaps = {
+                accept_change = {
+                    modes = { n = "y", v = "y" },
+                    description = "Accept the suggested change",
+                },
+                reject_change = {
+                    modes = { n = "n", v = "n" },
+                    opts = { nowait = true },
+                    description = "Reject the suggested change",
+                },
+            },
+
+        },
+        inline = {
+            adapter = "openai",
+            keymaps = {
+                accept_change = {
+                    modes = { n = "y", v = "y" },
+                    description = "Accept the suggested change",
+                },
+                reject_change = {
+                    modes = { n = "n", v = "n" },
+                    opts = { nowait = true },
+                    description = "Reject the suggested change",
+                },
+            },
+        },
+    },
+    display = {
+        chat = {
+            window = {
+                layout = "vertical",
+                width = 0.3,
+                position = "right",
+            },
+        },
+    }
+})
+
 -- LSP and completion setup
 
 -- Mason setup
@@ -275,3 +331,9 @@ vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all and exit Neovim" 
 
 -- View error from LSP
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show error details" })
+
+-- AI autocomplete shortcuts
+vim.keymap.set("n", "<C-l>", ":CodeCompanion<CR>", { desc = "CodeCompanion inline command" })
+vim.keymap.set("v", "<C-l>", ":CodeCompanion<CR>", { desc = "CodeCompanion inline with selection" })
+vim.keymap.set("n", "<leader>l", ":CodeCompanionActions<CR>", { desc = "CodeCompanion inline suggestions" })
+vim.keymap.set("v", "<leader>l", ":CodeCompanionActions<CR>", { desc = "CodeCompanion inline with selection" })
