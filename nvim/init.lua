@@ -30,6 +30,7 @@ if vim.g.neovide then
     vim.g.neovide_cursor_trail_size = 0
     vim.g.neovide_cursor_vfx_mode = ""
     vim.g.neovide_scroll_animation_length = 0.05
+    vim.g.neovide_fullscreen = true
 end
 
 -- Bootstrap lazy.nvim
