@@ -24,6 +24,14 @@ if vim.loader and vim.loader.enable then
     vim.loader.enable()
 end
 
+-- If using neovide, disable weird cursor VFX
+if vim.g.neovide then
+    vim.g.neovide_cursor_animation_length = 0
+    vim.g.neovide_cursor_trail_size = 0
+    vim.g.neovide_cursor_vfx_mode = ""
+    vim.g.neovide_scroll_animation_length = 0.05
+end
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -356,6 +364,9 @@ vim.opt.hlsearch = false
 -- Better splits
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- Redcuce glitch during scroll
+vim.opt.lazyredraw = true
 
 -- Auto-open Neotree on startup and keep it open
 vim.api.nvim_create_autocmd("VimEnter", {
