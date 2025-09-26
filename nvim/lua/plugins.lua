@@ -100,5 +100,9 @@ return {
     },
     {
         "NvChad/nvim-colorizer.lua"
+    },
+    {
+        "b0o/schemastore.nvim",
+        ft = { "json", "yaml" }
     }
 }

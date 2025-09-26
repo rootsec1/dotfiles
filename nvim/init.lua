@@ -83,7 +83,11 @@ telescope.load_extension("ui-select")
 -- Treesitter setup
 local treesitterConfig = require("nvim-treesitter.configs")
 treesitterConfig.setup({
-    ensure_installed = { "lua", "javascript", "python" },
+    ensure_installed = {
+        "lua", "javascript", "typescript", "python", "json", "yaml",
+        "markdown", "markdown_inline", "toml", "html", "css", "bash",
+        "dockerfile", "gitignore", "vim", "vimdoc"
+    },
     highlight = { enable = true },
     indent = { enable = true }
 })
@@ -350,10 +354,52 @@ vim.lsp.config("pyright", {
     }
 })
 
+-- JSON
+vim.lsp.config("jsonls", {
+    capabilities = capabilities,
+    settings = {
+        json = {
+            schemas = require('schemastore').json.schemas(),
+            validate = { enable = true },
+        }
+    }
+})
+
+-- YAML
+vim.lsp.config("yamlls", {
+    capabilities = capabilities,
+    settings = {
+        yaml = {
+            schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://json.schemastore.org/docker-compose.yml"] = "docker-compose*.yml"
+            }
+        }
+    }
+})
+
+-- TOML
+vim.lsp.config("taplo", { capabilities = capabilities })
+
+-- Markdown
+vim.lsp.config("marksman", { capabilities = capabilities })
+
+-- HTML
+vim.lsp.config("html", { capabilities = capabilities })
+
+-- CSS
+vim.lsp.config("cssls", { capabilities = capabilities })
+
 -- Enable LSP servers
 vim.lsp.enable("lua_ls")
 vim.lsp.enable("ts_ls")
 vim.lsp.enable("pyright")
+vim.lsp.enable("jsonls")
+vim.lsp.enable("yamlls")
+vim.lsp.enable("taplo")
+vim.lsp.enable("marksman")
+vim.lsp.enable("html")
+vim.lsp.enable("cssls")
 
 -- Autocommands
 
