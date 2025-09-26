@@ -1,8 +1,8 @@
 return {
     {
-        "catppuccin/nvim",
-        name = "catppuccin",
-        priority = 1000
+        "scottmckendry/cyberdream.nvim",
+        lazy = false,
+        priority = 1000,
     },
     {
         "nvim-telescope/telescope.nvim",
@@ -70,5 +70,23 @@ return {
             "nvim-treesitter/nvim-treesitter",
             "nvim-telescope/telescope.nvim",
         }
+    },
+    {
+        "numToStr/Comment.nvim",
+    },
+    {
+        "VonHeikemen/fine-cmdline.nvim",
+        dependencies = { "MunifTanjim/nui.nvim" },
+    },
+    {
+        "ray-x/lsp_signature.nvim",
+        event = "VeryLazy",
+    },
+    {
+        "folke/trouble.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        "nvim-telescope/telescope-ui-select.nvim",
     }
 }
