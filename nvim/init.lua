@@ -47,24 +47,13 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- Theme setup
-require("catppuccin").setup({
-    flavour = "mocha",
-    transparent_background = true,
-    integrations = {
-        telescope = true,
-        neo_tree = true,
-        treesitter = true,
-        gitsigns = true,
-        mason = true,
-        cmp = true,
-        native_lsp = {
-            enabled = true,
-        },
-    }
+require("cyberdream").setup({
+    variant = "dark",
+    transparent = true,
 })
 
 -- Apply colorscheme
-vim.cmd.colorscheme("catppuccin")
+vim.cmd("colorscheme cyberdream")
 
 -- Override cursorline to show as underline
 vim.cmd("highlight CursorLine cterm=underline gui=underline ctermbg=NONE guibg=NONE")
@@ -73,12 +62,9 @@ vim.cmd("highlight CursorLine cterm=underline gui=underline ctermbg=NONE guibg=N
 
 -- Telescope setup
 local telescope = require("telescope")
-telescope.setup({
-    defaults = {
-        theme = "catppuccin",
-    }
-})
+telescope.setup()
 telescope.load_extension("fzf")
+telescope.load_extension("ui-select")
 
 -- Treesitter setup
 local treesitterConfig = require("nvim-treesitter.configs")
@@ -92,7 +78,18 @@ treesitterConfig.setup({
 require("lualine").setup({
     options = {
         icons_enabled = true,
-        theme = "dracula"
+        theme = "powerline_dark"
+    },
+    sections = {
+        lualine_b = { "branch", "diff", {
+            "diagnostics",
+            sources = { "nvim_lsp" },
+        } },
+        lualine_c = { {
+            "filename",
+            file_status = true, -- Shows [+] for modified files
+            path = 1,           -- Show relative path
+        } },
     }
 })
 
@@ -104,7 +101,7 @@ require("neo-tree").setup({
     enable_diagnostics = true,
     window = {
         position = "left",
-        width = 45,
+        width = 35,
     },
     filesystem = {
         follow_current_file = {
@@ -123,12 +120,110 @@ require("ibl").setup()
 require("bufferline").setup({
     options = {
         mode = "tabs",
-        separator_style = "slant",
+        separator_style = "thick", -- or "slant", "padded_slant", "slope"
         always_show_bufferline = true,
         show_buffer_close_icons = true,
         show_close_icon = true,
         color_icons = true,
         diagnostics = "nvim_lsp",
+        diagnostics_update_in_insert = false,
+        offsets = {
+            {
+                filetype = "neo-tree",
+                text = "File Explorer",
+                text_align = "center",
+                separator = true
+            }
+        },
+        custom_areas = {
+            right = function()
+                local result = {}
+                local seve = vim.diagnostic.severity
+                local error = #vim.diagnostic.get(0, { severity = seve.ERROR })
+                local warning = #vim.diagnostic.get(0, { severity = seve.WARN })
+
+                if error ~= 0 then
+                    table.insert(result, { text = "  " .. error, fg = "#EC5241" })
+                end
+                if warning ~= 0 then
+                    table.insert(result, { text = "  " .. warning, fg = "#EFB839" })
+                end
+                return result
+            end,
+        }
+    },
+    highlights = {
+        buffer_selected = {
+            bold = true,
+            italic = false,
+        },
+        tab_selected = {
+            bold = true,
+        }
+    }
+})
+
+require("Comment").setup({
+    padding = true,
+    sticky = true,
+    ignore = "^$",
+    toggler = {
+        line = "gcc",
+        block = "gbc",
+    },
+    opleader = {
+        line = "gc",
+        block = "gb",
+    },
+    extra = {
+        above = "gcO",
+        below = "gco",
+        eol = "gcA",
+    },
+    mappings = {
+        basic = true,
+        extra = true,
+    },
+})
+
+-- Trouble setup
+require("trouble").setup({
+    action_keys = {
+        open_tab = "t",
+        open = "<cr>"
+    }
+})
+
+-- LSP hover and signature help
+require("lsp_signature").setup({
+    bind = true,
+    handler_opts = {
+        border = "rounded"
+    },
+    floating_window = true,
+    hint_enable = true,
+    hint_prefix = "🐼 ",
+})
+
+-- Cmdline setup
+require("fine-cmdline").setup({
+    cmdline = {
+        prompt = "🐲 ❯❯❯ "
+    },
+    popup = {
+        position = {
+            row = "50%", -- Center vertically
+            col = "50%", -- Center horizontally
+        },
+        size = {
+            width = "60%",
+        },
+        border = {
+            style = "rounded",
+        },
+        win_options = {
+            winhighlight = "Normal:Normal,FloatBorder:Special",
+        }
     }
 })
 
@@ -239,6 +334,15 @@ vim.lsp.enable("pyright")
 
 -- Autocommands
 
+-- Better search behavior
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = false
+
+-- Better splits
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 -- Auto-open Neotree on startup and keep it open
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
@@ -246,15 +350,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
         -- If a file was opened, focus on the editor
         if vim.fn.argc() > 0 then
             vim.cmd("wincmd l")
-        end
-    end,
-})
-
--- Auto-save on focus lost or buffer leave
-vim.api.nvim_create_autocmd({ "FocusLost", "BufLeave" }, {
-    callback = function()
-        if vim.bo.modified and vim.bo.buftype == "" and vim.fn.expand("%") ~= "" then
-            vim.cmd("silent! write")
         end
     end,
 })
@@ -288,7 +383,7 @@ vim.keymap.set("n", "<C-f>", function()
     require("telescope.builtin").current_buffer_fuzzy_find()
 end, { desc = "Search in current file" })
 
-vim.keymap.set("n", "<leader>F", require("telescope.builtin").live_grep, { desc = "Search in all files" })
+vim.keymap.set("n", "<leader>f", require("telescope.builtin").live_grep, { desc = "Search in all files" })
 
 -- Formatting
 vim.keymap.set("n", "<C-k>", function()
@@ -300,7 +395,7 @@ vim.keymap.set("n", "<S-Tab>", ":tabnext<CR>", { desc = "Next tab" })
 vim.keymap.set("n", "<C-w>", ":tabclose<CR>", { desc = "Close tab" })
 
 -- UI toggles
-vim.keymap.set("n", "<C-b>", ":Neotree filesystem reveal left<CR>", { desc = "Toggle file explorer" })
+vim.keymap.set("n", "<C-b>", ":Neotree toggle<CR>", { desc = "Toggle file explorer" })
 vim.keymap.set("n", "<leader>g", ":LazyGit<CR>", { desc = "Open LazyGit" })
 
 -- VS Code-like shortcuts
@@ -310,6 +405,11 @@ vim.keymap.set("n", "<C-a>", "ggVG", { desc = "Select all" })
 vim.keymap.set("n", "<C-z>", "u", { desc = "Undo" })
 vim.keymap.set("n", "<C-y>", "<C-r>", { desc = "Redo" })
 vim.keymap.set("n", "<C-d>", "yyp", { desc = "Duplicate line" })
+vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle line comment", remap = true })
+vim.keymap.set("v", "<leader>/", "gc", { desc = "Toggle comment selection", remap = true })
+vim.keymap.set("n", "<C-g>", vim.lsp.buf.definition, { desc = "Go to definition" })
+vim.keymap.set("n", "<C-u>", ":Trouble lsp_references toggle focus=true<CR>", { desc = "Toggle usages" })
+vim.keymap.set("n", "<C-i>", vim.lsp.buf.hover, { desc = "Show info" })
 
 -- Copy/Cut/Paste - explicitly use system clipboard
 vim.keymap.set("n", "<C-x>", '"+dd', { desc = "Cut line" })
@@ -323,11 +423,14 @@ vim.keymap.set("v", "<C-x>", '"+d', { desc = "Cut selection" })
 -- Paste in insert mode
 vim.keymap.set("i", "<C-v>", "<C-r>+", { desc = "Paste in insert mode" })
 
+-- CmdLine
+vim.keymap.set("n", ":", ":FineCmdline<CR>", { desc = "Enhanced command line" })
+
 -- Find and replace
 vim.keymap.set("n", "<C-h>", ":%s//gc<Left><Left><Left>", { desc = "Find and replace" })
 
 -- Quit all tabs and close Neovim entirely (like Cmd+Q in VS Code)
-vim.keymap.set("n", "<leader>q", ":qa<CR>", { desc = "Quit all and exit Neovim" })
+vim.keymap.set("n", "<leader>q", ":qa!<CR>", { desc = "Quit all and exit Neovim" })
 
 -- View error from LSP
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show error details" })
