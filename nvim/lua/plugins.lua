@@ -88,5 +88,17 @@ return {
     },
     {
         "nvim-telescope/telescope-ui-select.nvim",
+    },
+    {
+        "rcarriga/nvim-notify"
+    },
+    {
+        "stevearc/dressing.nvim"
+    },
+    {
+        "HiPhish/rainbow-delimiters.nvim"
+    },
+    {
+        "NvChad/nvim-colorizer.lua"
     }
 }
