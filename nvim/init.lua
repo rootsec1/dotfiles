@@ -19,6 +19,11 @@ vim.cmd("set fixendofline")
 -- Set leader key
 vim.g.mapleader = " "
 
+-- Enable Lua loader (Neovim 0.9+)
+if vim.loader and vim.loader.enable then
+    vim.loader.enable()
+end
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -163,6 +168,12 @@ require("bufferline").setup({
     }
 })
 
+-- UI input beautify
+require("dressing").setup()
+
+-- Colorize color codes
+require("colorizer").setup()
+
 require("Comment").setup({
     padding = true,
     sticky = true,
@@ -282,6 +293,9 @@ require("codecompanion").setup({
         },
     }
 })
+
+-- Notifications
+vim.notify = require("notify")
 
 -- LSP and completion setup
 
