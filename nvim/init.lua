@@ -314,7 +314,20 @@ vim.notify = require("notify")
 
 -- Mason setup
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = {
+        "lua_ls",
+        "ts_ls",
+        "pyright",
+        "jsonls",
+        "yamlls",
+        "taplo",
+        "marksman",
+        "html",
+        "cssls"
+    },
+    automatic_installation = true,
+})
 
 -- Auto-completion setup
 local cmp = require("cmp")
