@@ -1,170 +1,188 @@
-# 🚀 rootsec1's dotfiles
+# 🚀 dotfiles
 
-> ✨ My personal development environment configuration files for macOS, featuring a modern Neovim setup with custom hotkeys.
+> ✨ My personal development environment configuration files for macOS, featuring a modern **Neovim IDE setup** with AI-assisted coding, fuzzy finding, custom UI, and VS Code-like shortcuts.
 
 ## 📸 Screenshots
 
 ### 🌳 LazyGit integration
-<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 06 24 PM" src="https://github.com/user-attachments/assets/a5d6ad9a-a925-4131-9d7c-d9522181a68a" />
+
+<img width="1792" height="1120" alt="Screenshot 2025-09-25 at 11 46 54 PM" src="https://github.com/user-attachments/assets/0ec366c7-43af-4d87-8494-63926d785d7f" />
 
 ### 🌳 File Tree and Editor with autocomplete
-<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 09 46 PM" src="https://github.com/user-attachments/assets/4e77accb-477c-4372-b272-1820eaee05f7" />
+
+<img width="1792" height="1120" alt="Screenshot 2025-09-25 at 11 45 11 PM" src="https://github.com/user-attachments/assets/9323e620-dfb2-4712-909b-b11eea51b0cf" />
 
 ### 🌳 Fuzzy finding (live grep) across codebase
-<img width="1792" height="1120" alt="Screenshot 2025-09-21 at 10 10 58 PM" src="https://github.com/user-attachments/assets/656f1a2a-ebd1-4e94-8ac9-056cbcb661bd" />
+
+<img width="1792" height="1120" alt="Screenshot 2025-09-25 at 11 48 01 PM" src="https://github.com/user-attachments/assets/82d4ddf0-47e7-4a1e-b39b-8f8be40890af" />
+
+---
 
 ## 🌟 Features
 
 ### 🎨 Neovim Configuration
-A fully-featured IDE-like setup with:
 
-- 🎭 **Modern UI**: Catppuccin Mocha theme with transparent background
-- 📁 **File Management**: Neo-tree file explorer with git integration  
-- 🔍 **Fuzzy Finding**: Telescope for files and text search with FZF integration
-- 💻 **Language Support**: LSP integration for Lua, TypeScript/JavaScript, and Python
-- 🧠 **Auto-completion**: Intelligent code completion with nvim-cmp
-- 🌈 **Syntax Highlighting**: Treesitter-powered highlighting
-- 🔧 **Git Integration**: LazyGit integration and git status indicators
-- ⚡ **Auto-formatting**: Format-on-save with language-specific formatters
-- 🎯 **VS Code-like Shortcuts**: Familiar keybindings for easy transition
+An IDE-like workflow built on **lazy.nvim** plugin manager with:
 
-### ✨ Key Features
+* 🎭 **Modern UI**: Cyberdream theme (dark + transparent)
+* 📁 **File Management**: Neo-tree explorer with git + diagnostics integration
+* 🔍 **Fuzzy Finding**: Telescope with FZF-native + UI select
+* 🧠 **AI Assistant**: CodeCompanion (OpenAI adapter) for inline and chat-based coding help
+* 🌈 **Syntax Highlighting**: Treesitter for Lua, JavaScript/TypeScript, Python
+* 💻 **LSP Integration**: lua_ls, ts_ls, pyright via Mason & nvim-lspconfig
+* ⚡ **Completion**: nvim-cmp with LSP sources
+* 📊 **Statusline**: Lualine with branch/diff/diagnostics
+* 📑 **Tabs**: Bufferline with styled tabs and inline diagnostics
+* 🧩 **Git Integration**: LazyGit + gitsigns
+* 🔧 **Auto-formatting**: Format on save using LSP
+* ✍️ **Commenting**: Comment.nvim with `gcc`/`gc` style mappings
+* 🐼 **LSP Signature Help**: Inline function hints with borders + emoji hints
+* 🪟 **Enhanced Cmdline**: fine-cmdline with styled popup prompt
+* 🚨 **Diagnostics**: Trouble.nvim for quick error/usages navigation
 
-- 📋 **Tab Management**: Bufferline with VS Code-style tabs
-- 💾 **Auto-save**: Saves on focus loss and buffer switch
-- 📱 **Smart Clipboard**: System clipboard integration
-- 📏 **Indent Guides**: Visual indentation lines
-- 🔗 **Auto-pairs**: Automatic bracket and quote completion
-- 🎨 **File Icons**: Nerd font icons throughout the interface
+---
 
 ## 📋 Prerequisites
 
 ### 🍎 macOS Dependencies
+
 ```bash
 # Install Homebrew if not already installed
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Install required tools
-brew install neovim                    # 🚀 The editor itself
+brew install neovim                    # 🚀 Neovim editor
 brew install ripgrep                   # 🔍 For telescope live grep
 brew install lazygit                   # 🔧 Git TUI integration
-brew install font-fira-code-nerd-font  # 📝 For icons
+brew install font-fira-code-nerd-font  # 📝 Nerd Font for icons
 ```
 
 ### 💻 Terminal Setup
-- **Terminal**: Warp 🌊 (recommended) or iTerm2
-- **Font**: FiraCode Nerd Font 🔤 (for proper icon display)
+
+* **Terminal**: Warp 🌊 (recommended) or iTerm2
+* **Font**: FiraCode Nerd Font 🔤
+
+---
 
 ## 🛠️ Installation
 
 1. 📥 Clone the repository:
+
 ```bash
 git clone https://github.com/rootsec1/dotfiles.git ~/.dotfiles
 cd ~/.dotfiles
 ```
 
 2. 🔄 Backup existing Neovim configuration:
+
 ```bash
 mv ~/.config/nvim ~/.config/nvim.backup 2>/dev/null || true
 ```
 
 3. 🔗 Create symbolic link:
+
 ```bash
 ln -sf ~/.dotfiles/nvim ~/.config/nvim
 ```
 
 4. 🎉 Start Neovim and let plugins install automatically:
+
 ```bash
 nvim
 ```
+
+---
 
 ## 📁 Configuration Structure
 
 ```
 nvim/
-├── init.lua           # 🏠 Main configuration file
+├── init.lua           # 🏠 Main config (settings, plugin setup, keymaps)
 ├── lua/
 │   └── plugins.lua    # 🧩 Plugin definitions
-└── lazy-lock.json     # 🔒 Plugin version lockfile
+└── lazy-lock.json     # 🔒 Plugin lockfile
 ```
+
+---
 
 ## ⌨️ Key Bindings
 
-### 📂 File Operations
-- `Ctrl + P` - 🔍 Find files (opens in new tab)
-- `Ctrl + F` - 🔎 Search in current file
-- `Space + F` - 🌍 Search in all files (live grep)
-- `Ctrl + B` - 🌳 Toggle file explorer
+### 📂 File & Search
 
-### 📑 Tab Management
-- `Shift + Tab` - ➡️ Next tab
-- `Ctrl + W` - ❌ Close current tab
-- `Space + Q` - 🚪 Quit all
+* `Ctrl + P` → Find files (open in new tab)
+* `Ctrl + F` → Search in current file
+* `Space + F` → Live grep across project
+* `Ctrl + B` → Toggle file explorer
 
-### 💡 VS Code-like Shortcuts
-- `Ctrl + S` - 💾 Save file
-- `Ctrl + A` - 📝 Select all
-- `Ctrl + Z` - ↩️ Undo
-- `Ctrl + Y` - ↪️ Redo
-- `Ctrl + D` - 📋 Duplicate line
-- `Ctrl + C/X/V` - 📋📝📎 Copy/Cut/Paste (system clipboard)
-- `Ctrl + K` - ✨ Format file
+### 📑 Tabs
 
-### 🔧 Git Integration
-- `Space + G` - 🚀 Open LazyGit
+* `Shift + Tab` → Next tab
+* `Ctrl + W` → Close tab
+* `Space + Q` → Quit all
 
-### 🧠 LSP Features
-- `Space + E` - ❌ Show error details
-- Auto-completion with `Tab` and `Enter` ✨
-- Format-on-save enabled 🎯
+### 💡 Editing & Navigation
+
+* `Ctrl + S` → Save
+* `Ctrl + A` → Select all
+* `Ctrl + Z` → Undo
+* `Ctrl + Y` → Redo
+* `Ctrl + D` → Duplicate line
+* `Ctrl + H` → Find & replace
+* `Ctrl + G` → Go to definition
+* `Ctrl + U` → Show usages (Trouble)
+* `Ctrl + I` → Hover info
+
+### 🔧 Git
+
+* `Space + G` → Open LazyGit
+
+### 🧠 LSP & AI
+
+* `Space + E` → Show error details
+* `Ctrl + K` → Format file
+* `Ctrl + L` / `Leader + L` → CodeCompanion inline & chat AI
+
+### 📋 Clipboard
+
+* `Ctrl + C/X/V` → Copy/Cut/Paste (system clipboard)
+* Works in normal, visual, and insert modes
+
+### 📝 Commenting
+
+* `gcc` → Toggle line comment
+* `gc` → Toggle visual selection comment
+
+### 🐲 Command Line
+
+* `:` → Launch fine-cmdline popup
+
+---
 
 ## 💻 Language Support
 
-### 🛠️ Included Language Servers
-- 🌙 **Lua**: lua_ls (with Neovim-specific configuration)
-- 📜 **TypeScript/JavaScript**: ts_ls (works for both .js and .ts files)
-- 🐍 **Python**: Pyright (with virtual environment support)
+* 🌙 **Lua** → lua_ls
+* 📜 **TypeScript/JavaScript** → ts_ls
+* 🐍 **Python** → pyright (virtualenv-aware)
 
-### 🐍 Python Virtual Environment Setup
-For Python projects, create a `pyrightconfig.json` in your project root:
-```json
-{
-    "venvPath": ".",
-    "venv": "env"
-}
-```
+Install more via `:Mason`.
 
-### ➕ Adding More Languages
-Use `:Mason` to install additional language servers, formatters, and linters through the built-in interface. 🎛️
+---
 
 ## 🎨 Customization
 
-### 🌈 Theme
-The configuration uses Catppuccin Mocha with transparent background. To modify:
-- Edit the `catppuccin.setup()` block in `init.lua`
-- Available flavors: `latte` ☕, `frappe` 🥤, `macchiato` 🍵, `mocha` 🍫
+* **Theme**: Cyberdream dark + transparent (`init.lua`)
+* **Tabs & Statusline**: bufferline + lualine themed
+* **Keymaps**: Easily modifiable in `init.lua`
 
-### ⌨️ Keybindings
-All keybindings are defined in the "Keymaps" section of `init.lua` and can be easily modified.
-
-### 🧩 Adding Plugins
-Add new plugins to `lua/plugins.lua` following the existing pattern.
+---
 
 ## 🔧 Troubleshooting
 
-### 🎨 Icons Not Showing
-- Ensure you're using FiraCode Nerd Font in your terminal
-- Check terminal font settings: should be "FiraCode Nerd Font", not just "Fira Code"
+* **Icons not showing** → Use FiraCode Nerd Font
+* **Clipboard issues** → Run `:checkhealth`
+* **LSP not working** → Check `:Mason`, `:LspInfo`
+* **Python env not detected** → Add `pyrightconfig.json` to project root
 
-### 📋 Clipboard Issues
-- The configuration uses explicit system clipboard registers (`"+`)
-- If issues persist, check `:checkhealth` for clipboard support
+---
 
-### 🐍 Python Virtual Environment Not Detected
-- Create `pyrightconfig.json` in your project root
-- Ensure your virtual environment is named `env` or update the config accordingly
-
-### 💻 LSP Not Working
-- Run `:Mason` to ensure language servers are installed
-- Check `:LspInfo` for server status
-- Use `:checkhealth` to diagnose issues
+⚡ With this setup, Neovim behaves like a **VS Code on steroids** — terminal-native, lightweight, but with AI-assisted coding and fully customizable workflows.
