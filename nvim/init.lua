@@ -483,6 +483,10 @@ vim.keymap.set("n", "<C-w>", ":tabclose<CR>", { desc = "Close tab" })
 vim.keymap.set("n", "<C-b>", ":Neotree toggle<CR>", { desc = "Toggle file explorer" })
 vim.keymap.set("n", "<leader>g", ":LazyGit<CR>", { desc = "Open LazyGit" })
 
+-- Vanilla VIM shortcuts
+vim.api.nvim_set_keymap("i", "jj", "<Esc>", { noremap = false })
+vim.api.nvim_set_keymap("v", "jj", "<Esc>", { noremap = false })
+
 -- VS Code-like shortcuts
 vim.keymap.set("n", "<C-s>", ":w<CR>", { desc = "Save file" })
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>", { desc = "Save file (insert mode)" })
@@ -492,6 +496,8 @@ vim.keymap.set("n", "<C-y>", "<C-r>", { desc = "Redo" })
 vim.keymap.set("n", "<C-d>", "yyp", { desc = "Duplicate line" })
 vim.keymap.set("n", "<leader>/", "gcc", { desc = "Toggle line comment", remap = true })
 vim.keymap.set("v", "<leader>/", "gc", { desc = "Toggle comment selection", remap = true })
+
+-- GoTo definitions
 vim.keymap.set("n", "<C-g>", vim.lsp.buf.definition, { desc = "Go to definition" })
 vim.keymap.set("n", "<C-u>", ":Trouble lsp_references toggle focus=true<CR>", { desc = "Toggle usages" })
 vim.keymap.set("n", "<C-i>", vim.lsp.buf.hover, { desc = "Show info" })
@@ -525,3 +531,7 @@ vim.keymap.set("n", "<C-l>", ":CodeCompanion<CR>", { desc = "CodeCompanion inlin
 vim.keymap.set("v", "<C-l>", ":CodeCompanion<CR>", { desc = "CodeCompanion inline with selection" })
 vim.keymap.set("n", "<leader>l", ":CodeCompanionActions<CR>", { desc = "CodeCompanion inline suggestions" })
 vim.keymap.set("v", "<leader>l", ":CodeCompanionActions<CR>", { desc = "CodeCompanion inline with selection" })
+
+-- Navigate highlighted references
+vim.keymap.set("n", "]]", require("illuminate").goto_next_reference, { desc = "Next reference" })
+vim.keymap.set("n", "[[", require("illuminate").goto_prev_reference, { desc = "Previous reference" })
