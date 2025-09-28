@@ -1,6 +1,6 @@
 return {
     {
-        "scottmckendry/cyberdream.nvim",
+        "sainnhe/gruvbox-material",
         lazy = false,
         priority = 1000,
     },

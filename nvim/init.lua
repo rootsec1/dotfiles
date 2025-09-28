@@ -61,13 +61,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("plugins")
 
 -- Theme setup
-require("cyberdream").setup({
-    variant = "dark",
-    transparent = true,
-})
+vim.g.gruvbox_material_background = "medium"
+vim.g.gruvbox_material_better_performance = 1
 
 -- Apply colorscheme
-vim.cmd("colorscheme cyberdream")
+vim.cmd("colorscheme gruvbox-material")
 
 -- Override cursorline to show as underline
 vim.cmd("highlight CursorLine cterm=underline gui=underline ctermbg=NONE guibg=NONE")
@@ -96,7 +94,7 @@ treesitterConfig.setup({
 require("lualine").setup({
     options = {
         icons_enabled = true,
-        theme = "powerline_dark"
+        theme = "gruvbox-material"
     },
     sections = {
         lualine_b = { "branch", "diff", {
@@ -415,6 +413,10 @@ vim.lsp.enable("html")
 vim.lsp.enable("cssls")
 
 -- Autocommands
+
+-- Enable spell checking
+vim.opt.spell = true
+vim.opt.spelllang = { "en_us" }
 
 -- Better search behavior
 vim.opt.ignorecase = true
