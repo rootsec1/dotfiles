@@ -15,7 +15,7 @@ Processing steps:
 8. Detect Python project roots and local virtual environments so Pyright resolves imports from `.venv` automatically.
 9. Detect Node project roots from package and lock files, export local `node_modules/.bin` to the language-server process, and prefer the workspace TypeScript SDK when it exists.
 10. Detect Rust and Go project roots from Cargo and Go module markers so their language servers attach at the right workspace boundary.
-11. Apply a VS Code High Contrast Dark-style UI pass so the main editor shell and tree are transparent over Ghostty, while tabs, statusline, syntax, and float borders keep the black-and-fluorescent-green contrast.
+11. Apply a VS Code High Contrast Dark-style UI pass so the main editor shell and tree stay transparent over Ghostty, while the text colors are bright enough to remain readable and the tabs, statusline, syntax, and float borders keep the black-and-fluorescent-green contrast.
 12. Use `lualine.nvim` for a bubble statusline and `bufferline.nvim` for slanted top tabs.
 13. Use `Snacks.lazygit()` for the main Git dashboard and `snacks` Git pickers for lightweight status and history views.
 14. Apply matching Ghostty window settings for font, padding, subtle translucency, lower blur, opaque cell backgrounds, explicit black-and-green palette overrides, and shell-integration title and cursor features so the terminal shell feels like the same app surface as Neovim without washing out text.
@@ -76,7 +76,7 @@ Edge cases / gotchas:
 - Neovide has its own startup font path, so GUI font issues may need `neovide/config.toml` and not just `guifont` in Lua.
 - The current visual direction is intentionally high-contrast and editor-first: black backgrounds, fluorescent green structure, orange highlights, VS Code-style purple keywords, and stronger editor/sidebar separation.
 - Ghostty title and tab context follow Ghostty shell integration, so the terminal chrome stays aligned with the current working directory and active shell session.
-- If text starts to look soft or faded, Ghostty opacity and blur matter more than the Neovim theme; keep opacity high and blur low so transparency does not reduce legibility.
+- If text starts to look soft or faded, keep Ghostty opacity high and blur low, and keep Neovim foreground colors bright enough that transparency does not wash out code text.
 - Markdown deliberately skips Treesitter highlighting because Neovim 0.12 starts it in the built-in ftplugin and can crash during redraw.
 - `Ctrl-b` is handled by the workspace controller and `nvim-tree`; Snacks explorer is intentionally disabled in this setup.
 - Search discoverability depends on `which-key` and the search palette because terminal Neovim cannot mirror every GUI key combination exactly.

@@ -7,8 +7,9 @@ statuscolumn, big-file fallback, git browser links, and LSP reference jumping.
 The palette shifts from softer One Dark tones to a VS Code High Contrast
 Dark-style look: fluorescent green structural borders, orange
 search/current-line accents, and brighter purple / green / yellow syntax. The
-main editor and tree backgrounds are now transparent so Ghostty's translucency
-shows through behind the shell.
+main editor and tree backgrounds stay transparent so Ghostty's translucency
+shows through behind the shell, but the text colors are pushed brighter to keep
+code legible.
 
 Why:
 The earlier Snacks integration worked, but only partially. Search and LazyGit
@@ -17,7 +18,7 @@ already drifted away from the real config. This pass keeps the stable layout
 and closes the integration gaps without replacing the editor shell again.
 
 Alternatives considered:
-- Keep the transparent look and only retune colors.
+- Keep the transparent editor look and only retune colors.
 - Replace `nvim-tree.lua` again.
 
 Edge cases:
@@ -58,8 +59,8 @@ palette overrides, green cursor and selection styling, and shell-integration
 title and cursor features so the terminal chrome feels like the same shell as
 Neovim. The translucent background remains, but the Ghostty profile now uses a
 higher opacity, lower blur radius, and opaque cell backgrounds so text stays
-crisp instead of washing out. Neovim also uses a brighter foreground so the
-transparent shell stays readable while floats and overlays remain opaque for
+crisp instead of washing out. Neovim keeps the editor surface transparent, but
+uses brighter foreground colors while floats and overlays remain opaque for
 search, diagnostics, and prompts.
 `checkhealth` buffers are now excluded from autosave so running Snacks health
 does not drop an `Untitled` file into the repo. External file reload is now

@@ -27,7 +27,7 @@ return {
 				bg_d = "#000000",
 				bg_blue = "#0f2a12",
 				bg_yellow = "#402300",
-				fg = "#f5fff5",
+				fg = "#ffffff",
 				purple = "#c586c0",
 				green = "#6a9955",
 				orange = "#ce9178",
@@ -36,7 +36,7 @@ return {
 				cyan = "#39ff14",
 				red = "#f48771",
 				grey = "#6a737d",
-				light_grey = "#dfe8df",
+				light_grey = "#eef6ee",
 			},
 		},
 		config = function(_, opts)

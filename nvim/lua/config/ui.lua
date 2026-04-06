@@ -63,11 +63,11 @@ end
 function M.apply()
 	local set_hl = vim.api.nvim_set_hl
 	local colors = {
-		text = "#f5fff5",
-		text_soft = "#ecf6ec",
-		muted = "#869486",
-		sidebar = "#000000",
-		editor = "#000000",
+		text = "#ffffff",
+		text_soft = "#f5fff5",
+		muted = "#9aa79a",
+		sidebar = "#020507",
+		editor = "#06090c",
 		editor_active = "#000000",
 		panel = "#0a0f14",
 		panel_alt = "#0d1319",
@@ -110,10 +110,10 @@ function M.apply()
 	set_hl(0, "PmenuSel", { fg = colors.editor, bg = colors.accent, bold = true })
 	set_hl(0, "PmenuSbar", { bg = colors.panel })
 	set_hl(0, "PmenuThumb", { bg = colors.panel_soft })
-	set_hl(0, "StatusLine", { fg = colors.text, bg = "NONE", bold = true })
-	set_hl(0, "StatusLineNC", { fg = colors.muted, bg = "NONE" })
-	set_hl(0, "WinBar", { fg = colors.text, bg = "NONE" })
-	set_hl(0, "WinBarNC", { fg = colors.muted, bg = "NONE" })
+	set_hl(0, "StatusLine", { fg = colors.text, bg = colors.sidebar, bold = true })
+	set_hl(0, "StatusLineNC", { fg = colors.muted, bg = colors.sidebar })
+	set_hl(0, "WinBar", { fg = colors.text, bg = colors.sidebar })
+	set_hl(0, "WinBarNC", { fg = colors.muted, bg = colors.sidebar })
 	set_hl(0, "Cursor", { fg = colors.editor, bg = colors.accent_hot })
 	set_hl(0, "MatchParen", { fg = colors.editor, bg = colors.accent, bold = true })
 	set_hl(0, "Directory", { fg = colors.accent, bold = true })
@@ -143,13 +143,13 @@ function M.apply()
 	set_hl(0, "DiagnosticVirtualTextInfo", { fg = colors.accent, bg = colors.panel })
 	set_hl(0, "DiagnosticVirtualTextHint", { fg = colors.success, bg = colors.panel })
 
-	set_hl(0, "BufferLineFill", { bg = "NONE" })
-	set_hl(0, "BufferLineBackground", { fg = colors.muted, bg = "NONE" })
+	set_hl(0, "BufferLineFill", { bg = colors.sidebar })
+	set_hl(0, "BufferLineBackground", { fg = colors.muted, bg = colors.sidebar })
 	set_hl(0, "BufferLineBufferSelected", { fg = colors.text, bg = colors.panel_alt, bold = true, italic = false })
 	set_hl(0, "BufferLineBufferVisible", { fg = colors.text_soft, bg = colors.panel })
 	set_hl(0, "BufferLineIndicatorSelected", { fg = colors.accent_hot, bg = colors.panel_alt })
 	set_hl(0, "BufferLineIndicatorVisible", { fg = colors.panel, bg = colors.panel })
-	set_hl(0, "BufferLineSeparator", { fg = colors.sidebar, bg = "NONE" })
+	set_hl(0, "BufferLineSeparator", { fg = colors.sidebar, bg = colors.sidebar })
 	set_hl(0, "BufferLineSeparatorSelected", { fg = colors.panel_alt, bg = colors.panel_alt })
 	set_hl(0, "BufferLineSeparatorVisible", { fg = colors.panel, bg = colors.panel })
 	set_hl(0, "BufferLineModified", { fg = colors.warn, bg = colors.sidebar })
@@ -157,11 +157,11 @@ function M.apply()
 	set_hl(0, "BufferLineModifiedSelected", { fg = colors.warn, bg = colors.panel_alt, bold = true })
 	set_hl(0, "BufferLineCloseButtonSelected", { fg = colors.error, bg = colors.panel_alt })
 	set_hl(0, "BufferLineCloseButtonVisible", { fg = colors.muted, bg = colors.panel })
-	set_hl(0, "BufferLineCloseButton", { fg = colors.muted, bg = "NONE" })
+	set_hl(0, "BufferLineCloseButton", { fg = colors.muted, bg = colors.sidebar })
 	set_hl(0, "BufferLineDuplicateSelected", { fg = colors.accent, bg = colors.panel_alt })
-	set_hl(0, "BufferLineOffsetSeparator", { fg = colors.border, bg = "NONE" })
-	set_hl(0, "BufferLineOffsetText", { fg = colors.text, bg = "NONE", bold = true })
-	set_hl(0, "BufferLineTabSeparator", { fg = colors.sidebar, bg = "NONE" })
+	set_hl(0, "BufferLineOffsetSeparator", { fg = colors.border, bg = colors.sidebar })
+	set_hl(0, "BufferLineOffsetText", { fg = colors.text, bg = colors.sidebar, bold = true })
+	set_hl(0, "BufferLineTabSeparator", { fg = colors.sidebar, bg = colors.sidebar })
 	set_hl(0, "BufferLineTabSelected", { fg = colors.text, bg = colors.panel_alt })
 
 	set_hl(0, "WhichKeyBorder", { link = "FloatBorder" })
@@ -204,7 +204,7 @@ function M.apply()
 	set_hl(0, "NvimTreeExecFile", { fg = colors.accent_alt, bold = true })
 
 	set_hl(0, "ActiveWindow", { fg = colors.text, bg = "NONE" })
-	set_hl(0, "ActiveWindowEndOfBuffer", { fg = colors.editor, bg = "NONE" })
+	set_hl(0, "ActiveWindowEndOfBuffer", { fg = colors.editor_active, bg = "NONE" })
 	set_hl(0, "ActiveWindowSignColumn", { fg = colors.muted, bg = "NONE" })
 	set_hl(0, "ActiveWindowLineNr", { fg = colors.muted, bg = "NONE" })
 	set_hl(0, "ActiveWindowCursorLine", { bg = colors.cursorline })
