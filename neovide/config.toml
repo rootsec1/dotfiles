@@ -1,0 +1,21 @@
+[font]
+size = 14.0
+
+[[font.normal]]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[[font.bold]]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[[font.italic]]
+family = "FiraCode Nerd Font Mono"
+style = "Regular"
+
+[[font.bold_italic]]
+family = "FiraCode Nerd Font Mono"
+style = "Bold"
+
+[box-drawing]
+mode = "native"
