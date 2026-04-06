@@ -13,10 +13,6 @@ Personal macOS dotfiles for a terminal-first setup built around:
 
 ![Full shell overview](docs/screenshots/shell-overview.png)
 
-### Neovim workspace
-
-![Neovim workspace](docs/screenshots/nvim-workspace.png)
-
 ## What is in here
 
 ### Neovim
